@@ -9,10 +9,10 @@
   "scripts": {
     "dev": "yarn services:up && tsx watch --inspect src/server.ts",
     "build": "tsc",
-    "services:up": "docker compose -f infra/compose.yml up -d",
-    "services:down": "docker compose -f infra/compose.yml down",
-    "services:stop": "docker compose -f infra/compose.yml stop",
-    "migration:create": "node-pg-migrate create ",
+    "services:up": "docker compose -f src/infra/compose.yml up -d",
+    "services:down": "docker compose -f src/infra/compose.yml down",
+    "services:stop": "docker compose -f src/infra/compose.yml stop",
+    "db:migrate": "prisma migrate dev && prisma generate",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
@@ -40,6 +40,7 @@
   "dependencies": {
     "@prisma/adapter-pg": "^7.8.0",
     "@prisma/client": "^7.8.0",
+    "bcryptjs": "^3.0.3",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "jsonwebtoken": "^9.0.3",

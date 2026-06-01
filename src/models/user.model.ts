@@ -1,9 +1,24 @@
+import { prisma } from '../lib/prisma.js';
+import password from './password.modal.js';
+
 async function findOne(username: string) {
-  return { username: username, password: 'password' };
+  return await prisma.user.findUnique({
+    where: {
+      email: username,
+    },
+  });
 }
 
-async function create(user: { username: string; password: string }) {
-  console.log(user);
+async function create(user: { email: string; password: string }) {
+  const hashed_password = await password.hashPassword(user.password);
+  const newUser = await prisma.user.create({
+    data: {
+      email: user.email,
+      password: hashed_password,
+    },
+  });
+
+  return newUser;
 }
 
 const user = {
