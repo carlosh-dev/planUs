@@ -1,3 +1,4 @@
+/* eslint-disable import/no-named-as-default-member */
 import { Router } from 'express';
 
 import authController from '../../controllers/auth.controller.js';

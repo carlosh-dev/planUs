@@ -17,9 +17,7 @@ export async function register(req: Request, res: Response) {
 
   const newUser = await user.create({ email, password });
 
-  return res
-    .status(201)
-    .json({ message: 'User created successfully', user_id: newUser.id });
+  return res.status(201).json({ user_id: newUser.id });
 }
 
 async function login(req: Request, res: Response) {

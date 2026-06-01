@@ -6,8 +6,8 @@ export type BaseErrorType = {
 };
 
 export class InternalServerError extends Error {
-  action: string;
-  statusCode: number;
+  public readonly action: string;
+  public readonly statusCode: number;
 
   constructor(
     message: string,
@@ -30,8 +30,8 @@ export class InternalServerError extends Error {
 }
 
 export class ServiceError extends Error {
-  action: string;
-  statusCode: number;
+  public readonly action: string;
+  public readonly statusCode: number;
 
   constructor({ cause, message }: BaseErrorType = {}) {
     super(message || 'Serviço indisponivel no momento.', {
@@ -53,8 +53,8 @@ export class ServiceError extends Error {
 }
 
 export class MethodNotAllowedError extends Error {
-  action: string;
-  statusCode: number;
+  public readonly action: string;
+  public readonly statusCode: number;
 
   constructor() {
     super('Método não permitido para este endpoint.');
@@ -75,8 +75,8 @@ export class MethodNotAllowedError extends Error {
 }
 
 export class ValidationError extends Error {
-  action: string;
-  statusCode: number;
+  public readonly action: string;
+  public readonly statusCode: number;
 
   constructor({ cause, message, action }: BaseErrorType = {}) {
     super(message || 'Um erro de validação ocorreu.', {
@@ -98,8 +98,8 @@ export class ValidationError extends Error {
 }
 
 export class NotFoundError extends Error {
-  action: string;
-  statusCode: number;
+  public readonly action: string;
+  public readonly statusCode: number;
 
   constructor({ cause, message, action }: BaseErrorType = {}) {
     super(message || 'Recurso não encontrado.', {
@@ -123,8 +123,8 @@ export class NotFoundError extends Error {
 }
 
 export class UnauthorazedError extends Error {
-  action: string;
-  statusCode: number;
+  public readonly action: string;
+  public readonly statusCode: number;
 
   constructor({ cause, message, action }: BaseErrorType = {}) {
     super(message || 'Usuário não autenticado.', {
