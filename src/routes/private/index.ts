@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import { middlewareValidateJWT } from '../../middlewares/validateJWT.js';
+import { middlewareValidateJWT } from '../../middlewares/jwt.middleware.js';
 import userRoutes from './user.routes.js';
 
 const privateRoutes = Router();

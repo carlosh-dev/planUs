@@ -1,9 +1,9 @@
 import { NotFoundError, ValidationError } from '../infra/errors.js';
 import userRepository from '../repositories/user.repository.js';
-import password from './password.model.js';
+import authenticationModel from './authentication.model.js';
 
 async function create(user: { email: string; password: string }) {
-  const userFound = await findOne(user.email);
+  const userFound = await userRepository.findOne(user.email);
 
   if (userFound) {
     throw new ValidationError({
@@ -12,17 +12,15 @@ async function create(user: { email: string; password: string }) {
     });
   }
 
-  const hashed_password = await password.hashPassword(user.password);
-
   const newUser = await userRepository.create({
     email: user.email,
-    password: hashed_password,
+    password: user.password,
   });
 
   return newUser;
 }
 
-async function findOne(email: string) {
+async function login(email: string, password: string) {
   const userFound = await userRepository.findOne(email);
 
   if (!userFound) {
@@ -32,12 +30,16 @@ async function findOne(email: string) {
     });
   }
 
-  return userFound;
+  await authenticationModel.validadePasword(password, userFound.password);
+
+  const token = await authenticationModel.createToken({ uuid: userFound.uuid });
+
+  return { uuid: userFound.uuid, email: userFound.email, token };
 }
 
 const user = {
-  findOne,
   create,
+  login,
 };
 
 export default user;

@@ -3,7 +3,7 @@ import { Router } from 'express';
 import {
   asyncErrorHandler,
   errorsMiddleware,
-} from '../middlewares/errorsMiddleware.js';
+} from '../middlewares/errors.middleware.js';
 import privateRoutes from './private/index.js';
 import publicRoutes from './public/index.js';
 

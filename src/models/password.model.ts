@@ -22,8 +22,17 @@ function pepperPassword(password: string) {
   return pepperedPassword;
 }
 
-const password = {
+async function comparePassword(password: string, hashedPassword: string) {
+  password = pepperPassword(password);
+
+  console.log(password);
+  console.log(hashedPassword);
+  return await bcrypt.compare(password, hashedPassword);
+}
+
+const passwordModel = {
   hashPassword,
+  comparePassword,
 };
 
-export default password;
+export default passwordModel;

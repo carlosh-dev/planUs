@@ -1,5 +1,6 @@
 import type { Request, Response } from 'express';
 
+import controller from '../infra/controller.js';
 import user from '../models/user.model.js';
 
 export async function register(req: Request, res: Response) {
@@ -11,11 +12,17 @@ export async function register(req: Request, res: Response) {
 }
 
 async function login(req: Request, res: Response) {
-  const { email } = req.body;
+  const { email, password } = req.body;
 
-  await user.findOne(email);
+  const createdUser = await user.login(email, password);
 
-  return res.status(200).json({ message: 'Login successful' });
+  controller.setSessionCookie(createdUser.token, res);
+
+  return res.status(200).json({
+    uuid: createdUser.uuid,
+    email: createdUser.email,
+    token: createdUser.token,
+  });
 }
 
 const authController = {

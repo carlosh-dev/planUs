@@ -1,5 +1,5 @@
 import { prisma } from '../infra/database/prisma.js';
-import password from '../models/password.model.js';
+import passwordModel from '../models/password.model.js';
 
 async function findOne(email: string) {
   const userFound = await prisma.user.findUnique({
@@ -11,7 +11,7 @@ async function findOne(email: string) {
 }
 
 async function create(user: { email: string; password: string }) {
-  const hashed_password = await password.hashPassword(user.password);
+  const hashed_password = await passwordModel.hashPassword(user.password);
   const newUser = await prisma.user.create({
     data: {
       email: user.email,
