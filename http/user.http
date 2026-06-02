@@ -1,4 +1,16 @@
+### Create User
+
 POST http://localhost:3333/auth/register
+Content-Type: application/json
+
+{
+  "email": "test@email.com",
+  "password": "senha123"
+}
+
+### Login
+
+POST http://localhost:3333/auth/login
 Content-Type: application/json
 
 {

@@ -20,57 +20,39 @@ export type FamilyModel = runtime.Types.Result.DefaultSelection<Prisma.$FamilyPa
 
 export type AggregateFamily = {
   _count: FamilyCountAggregateOutputType | null
-  _avg: FamilyAvgAggregateOutputType | null
-  _sum: FamilySumAggregateOutputType | null
   _min: FamilyMinAggregateOutputType | null
   _max: FamilyMaxAggregateOutputType | null
 }
 
-export type FamilyAvgAggregateOutputType = {
-  id: number | null
-}
-
-export type FamilySumAggregateOutputType = {
-  id: number | null
-}
-
 export type FamilyMinAggregateOutputType = {
-  id: number | null
+  uuid: string | null
   name: string | null
 }
 
 export type FamilyMaxAggregateOutputType = {
-  id: number | null
+  uuid: string | null
   name: string | null
 }
 
 export type FamilyCountAggregateOutputType = {
-  id: number
+  uuid: number
   name: number
   _all: number
 }
 
 
-export type FamilyAvgAggregateInputType = {
-  id?: true
-}
-
-export type FamilySumAggregateInputType = {
-  id?: true
-}
-
 export type FamilyMinAggregateInputType = {
-  id?: true
+  uuid?: true
   name?: true
 }
 
 export type FamilyMaxAggregateInputType = {
-  id?: true
+  uuid?: true
   name?: true
 }
 
 export type FamilyCountAggregateInputType = {
-  id?: true
+  uuid?: true
   name?: true
   _all?: true
 }
@@ -113,18 +95,6 @@ export type FamilyAggregateArgs<ExtArgs extends runtime.Types.Extensions.Interna
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
-   * Select which fields to average
-  **/
-  _avg?: FamilyAvgAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
-   * Select which fields to sum
-  **/
-  _sum?: FamilySumAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
    * Select which fields to find the minimum value
   **/
   _min?: FamilyMinAggregateInputType
@@ -155,18 +125,14 @@ export type FamilyGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   take?: number
   skip?: number
   _count?: FamilyCountAggregateInputType | true
-  _avg?: FamilyAvgAggregateInputType
-  _sum?: FamilySumAggregateInputType
   _min?: FamilyMinAggregateInputType
   _max?: FamilyMaxAggregateInputType
 }
 
 export type FamilyGroupByOutputType = {
-  id: number
+  uuid: string
   name: string
   _count: FamilyCountAggregateOutputType | null
-  _avg: FamilyAvgAggregateOutputType | null
-  _sum: FamilySumAggregateOutputType | null
   _min: FamilyMinAggregateOutputType | null
   _max: FamilyMaxAggregateOutputType | null
 }
@@ -190,77 +156,78 @@ export type FamilyWhereInput = {
   AND?: Prisma.FamilyWhereInput | Prisma.FamilyWhereInput[]
   OR?: Prisma.FamilyWhereInput[]
   NOT?: Prisma.FamilyWhereInput | Prisma.FamilyWhereInput[]
-  id?: Prisma.IntFilter<"Family"> | number
+  uuid?: Prisma.StringFilter<"Family"> | string
   name?: Prisma.StringFilter<"Family"> | string
   users?: Prisma.UserListRelationFilter
 }
 
 export type FamilyOrderByWithRelationInput = {
-  id?: Prisma.SortOrder
+  uuid?: Prisma.SortOrder
   name?: Prisma.SortOrder
   users?: Prisma.UserOrderByRelationAggregateInput
 }
 
 export type FamilyWhereUniqueInput = Prisma.AtLeast<{
-  id?: number
+  uuid?: string
   AND?: Prisma.FamilyWhereInput | Prisma.FamilyWhereInput[]
   OR?: Prisma.FamilyWhereInput[]
   NOT?: Prisma.FamilyWhereInput | Prisma.FamilyWhereInput[]
   name?: Prisma.StringFilter<"Family"> | string
   users?: Prisma.UserListRelationFilter
-}, "id">
+}, "uuid">
 
 export type FamilyOrderByWithAggregationInput = {
-  id?: Prisma.SortOrder
+  uuid?: Prisma.SortOrder
   name?: Prisma.SortOrder
   _count?: Prisma.FamilyCountOrderByAggregateInput
-  _avg?: Prisma.FamilyAvgOrderByAggregateInput
   _max?: Prisma.FamilyMaxOrderByAggregateInput
   _min?: Prisma.FamilyMinOrderByAggregateInput
-  _sum?: Prisma.FamilySumOrderByAggregateInput
 }
 
 export type FamilyScalarWhereWithAggregatesInput = {
   AND?: Prisma.FamilyScalarWhereWithAggregatesInput | Prisma.FamilyScalarWhereWithAggregatesInput[]
   OR?: Prisma.FamilyScalarWhereWithAggregatesInput[]
   NOT?: Prisma.FamilyScalarWhereWithAggregatesInput | Prisma.FamilyScalarWhereWithAggregatesInput[]
-  id?: Prisma.IntWithAggregatesFilter<"Family"> | number
+  uuid?: Prisma.StringWithAggregatesFilter<"Family"> | string
   name?: Prisma.StringWithAggregatesFilter<"Family"> | string
 }
 
 export type FamilyCreateInput = {
+  uuid?: string
   name: string
   users?: Prisma.UserCreateNestedManyWithoutFamilyInput
 }
 
 export type FamilyUncheckedCreateInput = {
-  id?: number
+  uuid?: string
   name: string
   users?: Prisma.UserUncheckedCreateNestedManyWithoutFamilyInput
 }
 
 export type FamilyUpdateInput = {
+  uuid?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   users?: Prisma.UserUpdateManyWithoutFamilyNestedInput
 }
 
 export type FamilyUncheckedUpdateInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  uuid?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   users?: Prisma.UserUncheckedUpdateManyWithoutFamilyNestedInput
 }
 
 export type FamilyCreateManyInput = {
-  id?: number
+  uuid?: string
   name: string
 }
 
 export type FamilyUpdateManyMutationInput = {
+  uuid?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type FamilyUncheckedUpdateManyInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  uuid?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
@@ -270,26 +237,18 @@ export type FamilyNullableScalarRelationFilter = {
 }
 
 export type FamilyCountOrderByAggregateInput = {
-  id?: Prisma.SortOrder
+  uuid?: Prisma.SortOrder
   name?: Prisma.SortOrder
 }
 
-export type FamilyAvgOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-}
-
 export type FamilyMaxOrderByAggregateInput = {
-  id?: Prisma.SortOrder
+  uuid?: Prisma.SortOrder
   name?: Prisma.SortOrder
 }
 
 export type FamilyMinOrderByAggregateInput = {
-  id?: Prisma.SortOrder
+  uuid?: Prisma.SortOrder
   name?: Prisma.SortOrder
-}
-
-export type FamilySumOrderByAggregateInput = {
-  id?: Prisma.SortOrder
 }
 
 export type FamilyCreateNestedOneWithoutUsersInput = {
@@ -309,11 +268,12 @@ export type FamilyUpdateOneWithoutUsersNestedInput = {
 }
 
 export type FamilyCreateWithoutUsersInput = {
+  uuid?: string
   name: string
 }
 
 export type FamilyUncheckedCreateWithoutUsersInput = {
-  id?: number
+  uuid?: string
   name: string
 }
 
@@ -334,11 +294,12 @@ export type FamilyUpdateToOneWithWhereWithoutUsersInput = {
 }
 
 export type FamilyUpdateWithoutUsersInput = {
+  uuid?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type FamilyUncheckedUpdateWithoutUsersInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  uuid?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
@@ -374,28 +335,28 @@ export type FamilyCountOutputTypeCountUsersArgs<ExtArgs extends runtime.Types.Ex
 
 
 export type FamilySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  id?: boolean
+  uuid?: boolean
   name?: boolean
   users?: boolean | Prisma.Family$usersArgs<ExtArgs>
   _count?: boolean | Prisma.FamilyCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["family"]>
 
 export type FamilySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  id?: boolean
+  uuid?: boolean
   name?: boolean
 }, ExtArgs["result"]["family"]>
 
 export type FamilySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  id?: boolean
+  uuid?: boolean
   name?: boolean
 }, ExtArgs["result"]["family"]>
 
 export type FamilySelectScalar = {
-  id?: boolean
+  uuid?: boolean
   name?: boolean
 }
 
-export type FamilyOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name", ExtArgs["result"]["family"]>
+export type FamilyOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"uuid" | "name", ExtArgs["result"]["family"]>
 export type FamilyInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   users?: boolean | Prisma.Family$usersArgs<ExtArgs>
   _count?: boolean | Prisma.FamilyCountOutputTypeDefaultArgs<ExtArgs>
@@ -409,7 +370,7 @@ export type $FamilyPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     users: Prisma.$UserPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: number
+    uuid: string
     name: string
   }, ExtArgs["result"]["family"]>
   composites: {}
@@ -494,8 +455,8 @@ export interface FamilyDelegate<ExtArgs extends runtime.Types.Extensions.Interna
    * // Get first 10 Families
    * const families = await prisma.family.findMany({ take: 10 })
    * 
-   * // Only select the `id`
-   * const familyWithIdOnly = await prisma.family.findMany({ select: { id: true } })
+   * // Only select the `uuid`
+   * const familyWithUuidOnly = await prisma.family.findMany({ select: { uuid: true } })
    * 
    */
   findMany<T extends FamilyFindManyArgs>(args?: Prisma.SelectSubset<T, FamilyFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FamilyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -539,9 +500,9 @@ export interface FamilyDelegate<ExtArgs extends runtime.Types.Extensions.Interna
    *   ]
    * })
    * 
-   * // Create many Families and only return the `id`
-   * const familyWithIdOnly = await prisma.family.createManyAndReturn({
-   *   select: { id: true },
+   * // Create many Families and only return the `uuid`
+   * const familyWithUuidOnly = await prisma.family.createManyAndReturn({
+   *   select: { uuid: true },
    *   data: [
    *     // ... provide data here
    *   ]
@@ -630,9 +591,9 @@ export interface FamilyDelegate<ExtArgs extends runtime.Types.Extensions.Interna
    *   ]
    * })
    * 
-   * // Update zero or more Families and only return the `id`
-   * const familyWithIdOnly = await prisma.family.updateManyAndReturn({
-   *   select: { id: true },
+   * // Update zero or more Families and only return the `uuid`
+   * const familyWithUuidOnly = await prisma.family.updateManyAndReturn({
+   *   select: { uuid: true },
    *   where: {
    *     // ... provide filter here
    *   },
@@ -835,7 +796,7 @@ export interface Prisma__FamilyClient<T, Null = never, ExtArgs extends runtime.T
  * Fields of the Family model
  */
 export interface FamilyFieldRefs {
-  readonly id: Prisma.FieldRef<"Family", 'Int'>
+  readonly uuid: Prisma.FieldRef<"Family", 'String'>
   readonly name: Prisma.FieldRef<"Family", 'String'>
 }
     

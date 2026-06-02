@@ -20,80 +20,58 @@ export type UserModel = runtime.Types.Result.DefaultSelection<Prisma.$UserPayloa
 
 export type AggregateUser = {
   _count: UserCountAggregateOutputType | null
-  _avg: UserAvgAggregateOutputType | null
-  _sum: UserSumAggregateOutputType | null
   _min: UserMinAggregateOutputType | null
   _max: UserMaxAggregateOutputType | null
 }
 
-export type UserAvgAggregateOutputType = {
-  id: number | null
-  familyId: number | null
-}
-
-export type UserSumAggregateOutputType = {
-  id: number | null
-  familyId: number | null
-}
-
 export type UserMinAggregateOutputType = {
-  id: number | null
+  uuid: string | null
   email: string | null
   name: string | null
   password: string | null
-  familyId: number | null
+  familyUuid: string | null
 }
 
 export type UserMaxAggregateOutputType = {
-  id: number | null
+  uuid: string | null
   email: string | null
   name: string | null
   password: string | null
-  familyId: number | null
+  familyUuid: string | null
 }
 
 export type UserCountAggregateOutputType = {
-  id: number
+  uuid: number
   email: number
   name: number
   password: number
-  familyId: number
+  familyUuid: number
   _all: number
 }
 
 
-export type UserAvgAggregateInputType = {
-  id?: true
-  familyId?: true
-}
-
-export type UserSumAggregateInputType = {
-  id?: true
-  familyId?: true
-}
-
 export type UserMinAggregateInputType = {
-  id?: true
+  uuid?: true
   email?: true
   name?: true
   password?: true
-  familyId?: true
+  familyUuid?: true
 }
 
 export type UserMaxAggregateInputType = {
-  id?: true
+  uuid?: true
   email?: true
   name?: true
   password?: true
-  familyId?: true
+  familyUuid?: true
 }
 
 export type UserCountAggregateInputType = {
-  id?: true
+  uuid?: true
   email?: true
   name?: true
   password?: true
-  familyId?: true
+  familyUuid?: true
   _all?: true
 }
 
@@ -135,18 +113,6 @@ export type UserAggregateArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
-   * Select which fields to average
-  **/
-  _avg?: UserAvgAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
-   * Select which fields to sum
-  **/
-  _sum?: UserSumAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
    * Select which fields to find the minimum value
   **/
   _min?: UserMinAggregateInputType
@@ -177,21 +143,17 @@ export type UserGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
   take?: number
   skip?: number
   _count?: UserCountAggregateInputType | true
-  _avg?: UserAvgAggregateInputType
-  _sum?: UserSumAggregateInputType
   _min?: UserMinAggregateInputType
   _max?: UserMaxAggregateInputType
 }
 
 export type UserGroupByOutputType = {
-  id: number
+  uuid: string
   email: string
   name: string | null
   password: string
-  familyId: number | null
+  familyUuid: string | null
   _count: UserCountAggregateOutputType | null
-  _avg: UserAvgAggregateOutputType | null
-  _sum: UserSumAggregateOutputType | null
   _min: UserMinAggregateOutputType | null
   _max: UserMaxAggregateOutputType | null
 }
@@ -215,60 +177,59 @@ export type UserWhereInput = {
   AND?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
   OR?: Prisma.UserWhereInput[]
   NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
-  id?: Prisma.IntFilter<"User"> | number
+  uuid?: Prisma.StringFilter<"User"> | string
   email?: Prisma.StringFilter<"User"> | string
   name?: Prisma.StringNullableFilter<"User"> | string | null
   password?: Prisma.StringFilter<"User"> | string
-  familyId?: Prisma.IntNullableFilter<"User"> | number | null
+  familyUuid?: Prisma.StringNullableFilter<"User"> | string | null
   family?: Prisma.XOR<Prisma.FamilyNullableScalarRelationFilter, Prisma.FamilyWhereInput> | null
 }
 
 export type UserOrderByWithRelationInput = {
-  id?: Prisma.SortOrder
+  uuid?: Prisma.SortOrder
   email?: Prisma.SortOrder
   name?: Prisma.SortOrderInput | Prisma.SortOrder
   password?: Prisma.SortOrder
-  familyId?: Prisma.SortOrderInput | Prisma.SortOrder
+  familyUuid?: Prisma.SortOrderInput | Prisma.SortOrder
   family?: Prisma.FamilyOrderByWithRelationInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
-  id?: number
+  uuid?: string
   email?: string
   AND?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
   OR?: Prisma.UserWhereInput[]
   NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
   name?: Prisma.StringNullableFilter<"User"> | string | null
   password?: Prisma.StringFilter<"User"> | string
-  familyId?: Prisma.IntNullableFilter<"User"> | number | null
+  familyUuid?: Prisma.StringNullableFilter<"User"> | string | null
   family?: Prisma.XOR<Prisma.FamilyNullableScalarRelationFilter, Prisma.FamilyWhereInput> | null
-}, "id" | "email">
+}, "uuid" | "email">
 
 export type UserOrderByWithAggregationInput = {
-  id?: Prisma.SortOrder
+  uuid?: Prisma.SortOrder
   email?: Prisma.SortOrder
   name?: Prisma.SortOrderInput | Prisma.SortOrder
   password?: Prisma.SortOrder
-  familyId?: Prisma.SortOrderInput | Prisma.SortOrder
+  familyUuid?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
-  _avg?: Prisma.UserAvgOrderByAggregateInput
   _max?: Prisma.UserMaxOrderByAggregateInput
   _min?: Prisma.UserMinOrderByAggregateInput
-  _sum?: Prisma.UserSumOrderByAggregateInput
 }
 
 export type UserScalarWhereWithAggregatesInput = {
   AND?: Prisma.UserScalarWhereWithAggregatesInput | Prisma.UserScalarWhereWithAggregatesInput[]
   OR?: Prisma.UserScalarWhereWithAggregatesInput[]
   NOT?: Prisma.UserScalarWhereWithAggregatesInput | Prisma.UserScalarWhereWithAggregatesInput[]
-  id?: Prisma.IntWithAggregatesFilter<"User"> | number
+  uuid?: Prisma.StringWithAggregatesFilter<"User"> | string
   email?: Prisma.StringWithAggregatesFilter<"User"> | string
   name?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   password?: Prisma.StringWithAggregatesFilter<"User"> | string
-  familyId?: Prisma.IntNullableWithAggregatesFilter<"User"> | number | null
+  familyUuid?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
 }
 
 export type UserCreateInput = {
+  uuid?: string
   email: string
   name?: string | null
   password: string
@@ -276,14 +237,15 @@ export type UserCreateInput = {
 }
 
 export type UserUncheckedCreateInput = {
-  id?: number
+  uuid?: string
   email: string
   name?: string | null
   password: string
-  familyId?: number | null
+  familyUuid?: string | null
 }
 
 export type UserUpdateInput = {
+  uuid?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.StringFieldUpdateOperationsInput | string
@@ -291,67 +253,58 @@ export type UserUpdateInput = {
 }
 
 export type UserUncheckedUpdateInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  uuid?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.StringFieldUpdateOperationsInput | string
-  familyId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  familyUuid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type UserCreateManyInput = {
-  id?: number
+  uuid?: string
   email: string
   name?: string | null
   password: string
-  familyId?: number | null
+  familyUuid?: string | null
 }
 
 export type UserUpdateManyMutationInput = {
+  uuid?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type UserUncheckedUpdateManyInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  uuid?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.StringFieldUpdateOperationsInput | string
-  familyId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  familyUuid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type UserCountOrderByAggregateInput = {
-  id?: Prisma.SortOrder
+  uuid?: Prisma.SortOrder
   email?: Prisma.SortOrder
   name?: Prisma.SortOrder
   password?: Prisma.SortOrder
-  familyId?: Prisma.SortOrder
-}
-
-export type UserAvgOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  familyId?: Prisma.SortOrder
+  familyUuid?: Prisma.SortOrder
 }
 
 export type UserMaxOrderByAggregateInput = {
-  id?: Prisma.SortOrder
+  uuid?: Prisma.SortOrder
   email?: Prisma.SortOrder
   name?: Prisma.SortOrder
   password?: Prisma.SortOrder
-  familyId?: Prisma.SortOrder
+  familyUuid?: Prisma.SortOrder
 }
 
 export type UserMinOrderByAggregateInput = {
-  id?: Prisma.SortOrder
+  uuid?: Prisma.SortOrder
   email?: Prisma.SortOrder
   name?: Prisma.SortOrder
   password?: Prisma.SortOrder
-  familyId?: Prisma.SortOrder
-}
-
-export type UserSumOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  familyId?: Prisma.SortOrder
+  familyUuid?: Prisma.SortOrder
 }
 
 export type UserListRelationFilter = {
@@ -370,22 +323,6 @@ export type StringFieldUpdateOperationsInput = {
 
 export type NullableStringFieldUpdateOperationsInput = {
   set?: string | null
-}
-
-export type IntFieldUpdateOperationsInput = {
-  set?: number
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
-}
-
-export type NullableIntFieldUpdateOperationsInput = {
-  set?: number | null
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
 }
 
 export type UserCreateNestedManyWithoutFamilyInput = {
@@ -431,13 +368,14 @@ export type UserUncheckedUpdateManyWithoutFamilyNestedInput = {
 }
 
 export type UserCreateWithoutFamilyInput = {
+  uuid?: string
   email: string
   name?: string | null
   password: string
 }
 
 export type UserUncheckedCreateWithoutFamilyInput = {
-  id?: number
+  uuid?: string
   email: string
   name?: string | null
   password: string
@@ -473,35 +411,36 @@ export type UserScalarWhereInput = {
   AND?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
   OR?: Prisma.UserScalarWhereInput[]
   NOT?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
-  id?: Prisma.IntFilter<"User"> | number
+  uuid?: Prisma.StringFilter<"User"> | string
   email?: Prisma.StringFilter<"User"> | string
   name?: Prisma.StringNullableFilter<"User"> | string | null
   password?: Prisma.StringFilter<"User"> | string
-  familyId?: Prisma.IntNullableFilter<"User"> | number | null
+  familyUuid?: Prisma.StringNullableFilter<"User"> | string | null
 }
 
 export type UserCreateManyFamilyInput = {
-  id?: number
+  uuid?: string
   email: string
   name?: string | null
   password: string
 }
 
 export type UserUpdateWithoutFamilyInput = {
+  uuid?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type UserUncheckedUpdateWithoutFamilyInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  uuid?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type UserUncheckedUpdateManyWithoutFamilyInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  uuid?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.StringFieldUpdateOperationsInput | string
@@ -510,41 +449,41 @@ export type UserUncheckedUpdateManyWithoutFamilyInput = {
 
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  id?: boolean
+  uuid?: boolean
   email?: boolean
   name?: boolean
   password?: boolean
-  familyId?: boolean
+  familyUuid?: boolean
   family?: boolean | Prisma.User$familyArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  id?: boolean
+  uuid?: boolean
   email?: boolean
   name?: boolean
   password?: boolean
-  familyId?: boolean
+  familyUuid?: boolean
   family?: boolean | Prisma.User$familyArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  id?: boolean
+  uuid?: boolean
   email?: boolean
   name?: boolean
   password?: boolean
-  familyId?: boolean
+  familyUuid?: boolean
   family?: boolean | Prisma.User$familyArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectScalar = {
-  id?: boolean
+  uuid?: boolean
   email?: boolean
   name?: boolean
   password?: boolean
-  familyId?: boolean
+  familyUuid?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "name" | "password" | "familyId", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"uuid" | "email" | "name" | "password" | "familyUuid", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   family?: boolean | Prisma.User$familyArgs<ExtArgs>
 }
@@ -561,11 +500,11 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     family: Prisma.$FamilyPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: number
+    uuid: string
     email: string
     name: string | null
     password: string
-    familyId: number | null
+    familyUuid: string | null
   }, ExtArgs["result"]["user"]>
   composites: {}
 }
@@ -649,8 +588,8 @@ export interface UserDelegate<ExtArgs extends runtime.Types.Extensions.InternalA
    * // Get first 10 Users
    * const users = await prisma.user.findMany({ take: 10 })
    * 
-   * // Only select the `id`
-   * const userWithIdOnly = await prisma.user.findMany({ select: { id: true } })
+   * // Only select the `uuid`
+   * const userWithUuidOnly = await prisma.user.findMany({ select: { uuid: true } })
    * 
    */
   findMany<T extends UserFindManyArgs>(args?: Prisma.SelectSubset<T, UserFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -694,9 +633,9 @@ export interface UserDelegate<ExtArgs extends runtime.Types.Extensions.InternalA
    *   ]
    * })
    * 
-   * // Create many Users and only return the `id`
-   * const userWithIdOnly = await prisma.user.createManyAndReturn({
-   *   select: { id: true },
+   * // Create many Users and only return the `uuid`
+   * const userWithUuidOnly = await prisma.user.createManyAndReturn({
+   *   select: { uuid: true },
    *   data: [
    *     // ... provide data here
    *   ]
@@ -785,9 +724,9 @@ export interface UserDelegate<ExtArgs extends runtime.Types.Extensions.InternalA
    *   ]
    * })
    * 
-   * // Update zero or more Users and only return the `id`
-   * const userWithIdOnly = await prisma.user.updateManyAndReturn({
-   *   select: { id: true },
+   * // Update zero or more Users and only return the `uuid`
+   * const userWithUuidOnly = await prisma.user.updateManyAndReturn({
+   *   select: { uuid: true },
    *   where: {
    *     // ... provide filter here
    *   },
@@ -990,11 +929,11 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
  * Fields of the User model
  */
 export interface UserFieldRefs {
-  readonly id: Prisma.FieldRef<"User", 'Int'>
+  readonly uuid: Prisma.FieldRef<"User", 'String'>
   readonly email: Prisma.FieldRef<"User", 'String'>
   readonly name: Prisma.FieldRef<"User", 'String'>
   readonly password: Prisma.FieldRef<"User", 'String'>
-  readonly familyId: Prisma.FieldRef<"User", 'Int'>
+  readonly familyUuid: Prisma.FieldRef<"User", 'String'>
 }
     
 

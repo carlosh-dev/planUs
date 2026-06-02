@@ -13,16 +13,16 @@ datasource db {
 }
 
 model User {
-  id       Int     @id @default(autoincrement())
-  email    String  @unique
-  name     String?
-  password String
-  familyId Int?
-  family   Family? @relation(fields: [familyId], references: [id])
+  uuid       String  @id @default(uuid())
+  email      String  @unique
+  name       String?
+  password   String
+  familyUuid String?
+  family     Family? @relation(fields: [familyUuid], references: [uuid])
 }
 
 model Family {
-  id    Int    @id @default(autoincrement())
+  uuid  String @id @default(uuid())
   name  String
   users User[]
 }
