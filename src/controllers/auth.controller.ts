@@ -8,7 +8,7 @@ export async function register(req: Request, res: Response) {
 
   const newUser = await user.create({ email, password });
 
-  return res.status(201).json({ user_id: newUser.uuid });
+  return res.status(201).json({ uuid: newUser.uuid });
 }
 
 async function login(req: Request, res: Response) {

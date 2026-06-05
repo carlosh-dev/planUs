@@ -25,8 +25,6 @@ function pepperPassword(password: string) {
 async function comparePassword(password: string, hashedPassword: string) {
   password = pepperPassword(password);
 
-  console.log(password);
-  console.log(hashedPassword);
   return await bcrypt.compare(password, hashedPassword);
 }
 
