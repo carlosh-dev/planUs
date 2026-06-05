@@ -16,6 +16,7 @@ export const errorsMiddleware = (
     name: err.name,
     message: err.message || 'Internal Server Error',
     action: err.action,
+    details: err.details,
     statusCode,
   });
 };
