@@ -9,8 +9,11 @@ import publicRoutes from './public/index.js';
 
 const routes = Router();
 
-routes.use(asyncErrorHandler(publicRoutes));
-routes.use(asyncErrorHandler(privateRoutes));
+routes.use(
+  '/api',
+  asyncErrorHandler(publicRoutes),
+  asyncErrorHandler(privateRoutes),
+);
 
 routes.use(errorsMiddleware);
 
