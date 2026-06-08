@@ -52,7 +52,12 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   User: 'User',
-  Family: 'Family'
+  Family: 'Family',
+  Transaction: 'Transaction',
+  PlannedTransaction: 'PlannedTransaction',
+  Tag: 'Tag',
+  TransactionTag: 'TransactionTag',
+  PlannedTransactionTag: 'PlannedTransactionTag'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -72,22 +77,91 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 
 
 export const UserScalarFieldEnum = {
-  uuid: 'uuid',
+  id: 'id',
   email: 'email',
   name: 'name',
   password: 'password',
-  familyUuid: 'familyUuid'
+  role: 'role',
+  salary: 'salary',
+  familyId: 'familyId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
 export const FamilyScalarFieldEnum = {
-  uuid: 'uuid',
-  name: 'name'
+  id: 'id',
+  name: 'name',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type FamilyScalarFieldEnum = (typeof FamilyScalarFieldEnum)[keyof typeof FamilyScalarFieldEnum]
+
+
+export const TransactionScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  value: 'value',
+  userId: 'userId',
+  recurrent: 'recurrent',
+  payment_date: 'payment_date',
+  payment_type: 'payment_type',
+  installments: 'installments',
+  type: 'type',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type TransactionScalarFieldEnum = (typeof TransactionScalarFieldEnum)[keyof typeof TransactionScalarFieldEnum]
+
+
+export const PlannedTransactionScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  value: 'value',
+  userId: 'userId',
+  recurrent: 'recurrent',
+  start_payment_date: 'start_payment_date',
+  end_payment_date: 'end_payment_date',
+  payment_type: 'payment_type',
+  installments: 'installments',
+  type: 'type',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PlannedTransactionScalarFieldEnum = (typeof PlannedTransactionScalarFieldEnum)[keyof typeof PlannedTransactionScalarFieldEnum]
+
+
+export const TagScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  color: 'color',
+  userId: 'userId'
+} as const
+
+export type TagScalarFieldEnum = (typeof TagScalarFieldEnum)[keyof typeof TagScalarFieldEnum]
+
+
+export const TransactionTagScalarFieldEnum = {
+  transactionId: 'transactionId',
+  tagId: 'tagId'
+} as const
+
+export type TransactionTagScalarFieldEnum = (typeof TransactionTagScalarFieldEnum)[keyof typeof TransactionTagScalarFieldEnum]
+
+
+export const PlannedTransactionTagScalarFieldEnum = {
+  plannedTransactionId: 'plannedTransactionId',
+  tagId: 'tagId'
+} as const
+
+export type PlannedTransactionTagScalarFieldEnum = (typeof PlannedTransactionTagScalarFieldEnum)[keyof typeof PlannedTransactionTagScalarFieldEnum]
 
 
 export const SortOrder = {

@@ -12,17 +12,107 @@ datasource db {
   provider = "postgresql"
 }
 
+enum PaymentType {
+  CREDIT
+  DEBIT
+  PIX
+}
+
+enum TransationType {
+  IN
+  OUT
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
 model User {
-  uuid       String  @id @default(uuid())
-  email      String  @unique
-  name       String?
-  password   String
-  familyUuid String?
-  family     Family? @relation(fields: [familyUuid], references: [uuid])
+  id                  String               @id @default(uuid())
+  email               String               @unique @db.VarChar(250)
+  name                String?              @db.VarChar(50)
+  password            String               @db.VarChar(60)
+  role                Role                 @default(USER)
+  salary              Int
+  familyId            String?
+  family              Family?              @relation(fields: [familyId], references: [id])
+  transactions        Transaction[]
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @default(now())
+  tags                Tag[]
+  plannedTransactions PlannedTransaction[]
 }
 
 model Family {
-  uuid  String @id @default(uuid())
-  name  String
-  users User[]
+  id        String   @id @default(uuid())
+  name      String
+  users     User[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+}
+
+model Transaction {
+  id              String           @id @default(uuid())
+  name            String           @db.VarChar(50)
+  description     String?          @unique @db.VarChar(250)
+  value           Int
+  userId          String
+  user            User             @relation(fields: [userId], references: [id])
+  recurrent       Boolean          @default(false)
+  payment_date    DateTime
+  payment_type    PaymentType      @default(DEBIT)
+  installments    Int?
+  type            TransationType
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @default(now())
+  transactionTags TransactionTag[]
+}
+
+model PlannedTransaction {
+  id                     String                  @id @default(uuid())
+  name                   String                  @db.VarChar(50)
+  description            String?                 @unique @db.VarChar(250)
+  value                  Int
+  userId                 String
+  user                   User                    @relation(fields: [userId], references: [id])
+  recurrent              Boolean                 @default(false)
+  start_payment_date     DateTime
+  end_payment_date       DateTime
+  payment_type           PaymentType             @default(DEBIT)
+  installments           Int?
+  type                   TransationType
+  createdAt              DateTime                @default(now())
+  updatedAt              DateTime                @default(now())
+  plannedTransactionTags PlannedTransactionTag[]
+}
+
+model Tag {
+  id                     String                  @id @default(uuid())
+  name                   String
+  color                  String?
+  userId                 String
+  user                   User                    @relation(fields: [userId], references: [id])
+  transactions           TransactionTag[]
+  plannedTransactionTags PlannedTransactionTag[]
+
+  @@unique([userId, name])
+}
+
+model TransactionTag {
+  transactionId String
+  transaction   Transaction @relation(fields: [transactionId], references: [id])
+  tagId         String
+  tag           Tag         @relation(fields: [tagId], references: [id])
+
+  @@id([transactionId, tagId])
+}
+
+model PlannedTransactionTag {
+  plannedTransactionId String
+  plannedTransaction   PlannedTransaction @relation(fields: [plannedTransactionId], references: [id])
+  tagId                String
+  tag                  Tag                @relation(fields: [tagId], references: [id])
+
+  @@id([plannedTransactionId, tagId])
 }

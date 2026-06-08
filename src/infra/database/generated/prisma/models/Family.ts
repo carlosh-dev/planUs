@@ -25,35 +25,47 @@ export type AggregateFamily = {
 }
 
 export type FamilyMinAggregateOutputType = {
-  uuid: string | null
+  id: string | null
   name: string | null
+  createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type FamilyMaxAggregateOutputType = {
-  uuid: string | null
+  id: string | null
   name: string | null
+  createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type FamilyCountAggregateOutputType = {
-  uuid: number
+  id: number
   name: number
+  createdAt: number
+  updatedAt: number
   _all: number
 }
 
 
 export type FamilyMinAggregateInputType = {
-  uuid?: true
+  id?: true
   name?: true
+  createdAt?: true
+  updatedAt?: true
 }
 
 export type FamilyMaxAggregateInputType = {
-  uuid?: true
+  id?: true
   name?: true
+  createdAt?: true
+  updatedAt?: true
 }
 
 export type FamilyCountAggregateInputType = {
-  uuid?: true
+  id?: true
   name?: true
+  createdAt?: true
+  updatedAt?: true
   _all?: true
 }
 
@@ -130,8 +142,10 @@ export type FamilyGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalA
 }
 
 export type FamilyGroupByOutputType = {
-  uuid: string
+  id: string
   name: string
+  createdAt: Date
+  updatedAt: Date
   _count: FamilyCountAggregateOutputType | null
   _min: FamilyMinAggregateOutputType | null
   _max: FamilyMaxAggregateOutputType | null
@@ -156,29 +170,37 @@ export type FamilyWhereInput = {
   AND?: Prisma.FamilyWhereInput | Prisma.FamilyWhereInput[]
   OR?: Prisma.FamilyWhereInput[]
   NOT?: Prisma.FamilyWhereInput | Prisma.FamilyWhereInput[]
-  uuid?: Prisma.StringFilter<"Family"> | string
+  id?: Prisma.StringFilter<"Family"> | string
   name?: Prisma.StringFilter<"Family"> | string
+  createdAt?: Prisma.DateTimeFilter<"Family"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Family"> | Date | string
   users?: Prisma.UserListRelationFilter
 }
 
 export type FamilyOrderByWithRelationInput = {
-  uuid?: Prisma.SortOrder
+  id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   users?: Prisma.UserOrderByRelationAggregateInput
 }
 
 export type FamilyWhereUniqueInput = Prisma.AtLeast<{
-  uuid?: string
+  id?: string
   AND?: Prisma.FamilyWhereInput | Prisma.FamilyWhereInput[]
   OR?: Prisma.FamilyWhereInput[]
   NOT?: Prisma.FamilyWhereInput | Prisma.FamilyWhereInput[]
   name?: Prisma.StringFilter<"Family"> | string
+  createdAt?: Prisma.DateTimeFilter<"Family"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Family"> | Date | string
   users?: Prisma.UserListRelationFilter
-}, "uuid">
+}, "id">
 
 export type FamilyOrderByWithAggregationInput = {
-  uuid?: Prisma.SortOrder
+  id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   _count?: Prisma.FamilyCountOrderByAggregateInput
   _max?: Prisma.FamilyMaxOrderByAggregateInput
   _min?: Prisma.FamilyMinOrderByAggregateInput
@@ -188,47 +210,63 @@ export type FamilyScalarWhereWithAggregatesInput = {
   AND?: Prisma.FamilyScalarWhereWithAggregatesInput | Prisma.FamilyScalarWhereWithAggregatesInput[]
   OR?: Prisma.FamilyScalarWhereWithAggregatesInput[]
   NOT?: Prisma.FamilyScalarWhereWithAggregatesInput | Prisma.FamilyScalarWhereWithAggregatesInput[]
-  uuid?: Prisma.StringWithAggregatesFilter<"Family"> | string
+  id?: Prisma.StringWithAggregatesFilter<"Family"> | string
   name?: Prisma.StringWithAggregatesFilter<"Family"> | string
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"Family"> | Date | string
+  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Family"> | Date | string
 }
 
 export type FamilyCreateInput = {
-  uuid?: string
+  id?: string
   name: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
   users?: Prisma.UserCreateNestedManyWithoutFamilyInput
 }
 
 export type FamilyUncheckedCreateInput = {
-  uuid?: string
+  id?: string
   name: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
   users?: Prisma.UserUncheckedCreateNestedManyWithoutFamilyInput
 }
 
 export type FamilyUpdateInput = {
-  uuid?: Prisma.StringFieldUpdateOperationsInput | string
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   users?: Prisma.UserUpdateManyWithoutFamilyNestedInput
 }
 
 export type FamilyUncheckedUpdateInput = {
-  uuid?: Prisma.StringFieldUpdateOperationsInput | string
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   users?: Prisma.UserUncheckedUpdateManyWithoutFamilyNestedInput
 }
 
 export type FamilyCreateManyInput = {
-  uuid?: string
+  id?: string
   name: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type FamilyUpdateManyMutationInput = {
-  uuid?: Prisma.StringFieldUpdateOperationsInput | string
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type FamilyUncheckedUpdateManyInput = {
-  uuid?: Prisma.StringFieldUpdateOperationsInput | string
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type FamilyNullableScalarRelationFilter = {
@@ -237,18 +275,24 @@ export type FamilyNullableScalarRelationFilter = {
 }
 
 export type FamilyCountOrderByAggregateInput = {
-  uuid?: Prisma.SortOrder
+  id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type FamilyMaxOrderByAggregateInput = {
-  uuid?: Prisma.SortOrder
+  id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type FamilyMinOrderByAggregateInput = {
-  uuid?: Prisma.SortOrder
+  id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type FamilyCreateNestedOneWithoutUsersInput = {
@@ -268,13 +312,17 @@ export type FamilyUpdateOneWithoutUsersNestedInput = {
 }
 
 export type FamilyCreateWithoutUsersInput = {
-  uuid?: string
+  id?: string
   name: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type FamilyUncheckedCreateWithoutUsersInput = {
-  uuid?: string
+  id?: string
   name: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type FamilyCreateOrConnectWithoutUsersInput = {
@@ -294,13 +342,17 @@ export type FamilyUpdateToOneWithWhereWithoutUsersInput = {
 }
 
 export type FamilyUpdateWithoutUsersInput = {
-  uuid?: Prisma.StringFieldUpdateOperationsInput | string
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type FamilyUncheckedUpdateWithoutUsersInput = {
-  uuid?: Prisma.StringFieldUpdateOperationsInput | string
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -335,28 +387,36 @@ export type FamilyCountOutputTypeCountUsersArgs<ExtArgs extends runtime.Types.Ex
 
 
 export type FamilySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  uuid?: boolean
+  id?: boolean
   name?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
   users?: boolean | Prisma.Family$usersArgs<ExtArgs>
   _count?: boolean | Prisma.FamilyCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["family"]>
 
 export type FamilySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  uuid?: boolean
+  id?: boolean
   name?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
 }, ExtArgs["result"]["family"]>
 
 export type FamilySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  uuid?: boolean
+  id?: boolean
   name?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
 }, ExtArgs["result"]["family"]>
 
 export type FamilySelectScalar = {
-  uuid?: boolean
+  id?: boolean
   name?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
 }
 
-export type FamilyOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"uuid" | "name", ExtArgs["result"]["family"]>
+export type FamilyOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "createdAt" | "updatedAt", ExtArgs["result"]["family"]>
 export type FamilyInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   users?: boolean | Prisma.Family$usersArgs<ExtArgs>
   _count?: boolean | Prisma.FamilyCountOutputTypeDefaultArgs<ExtArgs>
@@ -370,8 +430,10 @@ export type $FamilyPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     users: Prisma.$UserPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    uuid: string
+    id: string
     name: string
+    createdAt: Date
+    updatedAt: Date
   }, ExtArgs["result"]["family"]>
   composites: {}
 }
@@ -455,8 +517,8 @@ export interface FamilyDelegate<ExtArgs extends runtime.Types.Extensions.Interna
    * // Get first 10 Families
    * const families = await prisma.family.findMany({ take: 10 })
    * 
-   * // Only select the `uuid`
-   * const familyWithUuidOnly = await prisma.family.findMany({ select: { uuid: true } })
+   * // Only select the `id`
+   * const familyWithIdOnly = await prisma.family.findMany({ select: { id: true } })
    * 
    */
   findMany<T extends FamilyFindManyArgs>(args?: Prisma.SelectSubset<T, FamilyFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FamilyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -500,9 +562,9 @@ export interface FamilyDelegate<ExtArgs extends runtime.Types.Extensions.Interna
    *   ]
    * })
    * 
-   * // Create many Families and only return the `uuid`
-   * const familyWithUuidOnly = await prisma.family.createManyAndReturn({
-   *   select: { uuid: true },
+   * // Create many Families and only return the `id`
+   * const familyWithIdOnly = await prisma.family.createManyAndReturn({
+   *   select: { id: true },
    *   data: [
    *     // ... provide data here
    *   ]
@@ -591,9 +653,9 @@ export interface FamilyDelegate<ExtArgs extends runtime.Types.Extensions.Interna
    *   ]
    * })
    * 
-   * // Update zero or more Families and only return the `uuid`
-   * const familyWithUuidOnly = await prisma.family.updateManyAndReturn({
-   *   select: { uuid: true },
+   * // Update zero or more Families and only return the `id`
+   * const familyWithIdOnly = await prisma.family.updateManyAndReturn({
+   *   select: { id: true },
    *   where: {
    *     // ... provide filter here
    *   },
@@ -796,8 +858,10 @@ export interface Prisma__FamilyClient<T, Null = never, ExtArgs extends runtime.T
  * Fields of the Family model
  */
 export interface FamilyFieldRefs {
-  readonly uuid: Prisma.FieldRef<"Family", 'String'>
+  readonly id: Prisma.FieldRef<"Family", 'String'>
   readonly name: Prisma.FieldRef<"Family", 'String'>
+  readonly createdAt: Prisma.FieldRef<"Family", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"Family", 'DateTime'>
 }
     
 

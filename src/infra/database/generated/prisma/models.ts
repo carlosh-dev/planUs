@@ -10,4 +10,9 @@
  */
 export type * from './models/User.js'
 export type * from './models/Family.js'
+export type * from './models/Transaction.js'
+export type * from './models/PlannedTransaction.js'
+export type * from './models/Tag.js'
+export type * from './models/TransactionTag.js'
+export type * from './models/PlannedTransactionTag.js'
 export type * from './commonInputTypes.js'

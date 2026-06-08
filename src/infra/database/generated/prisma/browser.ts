@@ -27,3 +27,28 @@ export type User = Prisma.UserModel
  * 
  */
 export type Family = Prisma.FamilyModel
+/**
+ * Model Transaction
+ * 
+ */
+export type Transaction = Prisma.TransactionModel
+/**
+ * Model PlannedTransaction
+ * 
+ */
+export type PlannedTransaction = Prisma.PlannedTransactionModel
+/**
+ * Model Tag
+ * 
+ */
+export type Tag = Prisma.TagModel
+/**
+ * Model TransactionTag
+ * 
+ */
+export type TransactionTag = Prisma.TransactionTagModel
+/**
+ * Model PlannedTransactionTag
+ * 
+ */
+export type PlannedTransactionTag = Prisma.PlannedTransactionTagModel
