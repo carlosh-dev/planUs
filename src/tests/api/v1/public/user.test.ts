@@ -32,7 +32,7 @@ describe('POST /login', () => {
     const body = await response.json();
 
     expect(response.status).toBe(200);
-    expect(body).toHaveProperty('uuid');
+    expect(body).toHaveProperty('id');
     expect(body).toHaveProperty('email');
     expect(body).toHaveProperty('token');
   });
@@ -46,14 +46,14 @@ describe('POST /register', () => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        name: 'New User',
-        email: 'newuser@example.com',
+        name: 'User',
+        email: 'usercreated@example.com',
         password: 'newpassword123',
       }),
     });
 
     const body = await response.json();
     expect(response.status).toBe(201);
-    expect(body).toHaveProperty('uuid');
+    expect(body).toHaveProperty('id');
   });
 });

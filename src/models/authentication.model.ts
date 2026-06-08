@@ -1,14 +1,15 @@
 import jwt from 'jsonwebtoken';
 
+import type { Role } from '../infra/database/generated/prisma/enums.js';
 import { UnauthorazedError } from '../infra/errors.js';
 import passwordModel from './password.model.js';
 
 const EXPIRATION_IN_MILLISECONDS = 60 * 60 * 24 * 30 * 1_000; // 30 days
 
-async function createToken(user: { uuid: string }) {
+async function createToken(user: { id: string; role: Role }) {
   const secret = process.env.JWT_SECRET || 'secret';
 
-  const token = jwt.sign({ user_id: user.uuid }, secret, {});
+  const token = jwt.sign({ user_id: user.id, role: user.role }, secret, {});
 
   return token;
 }

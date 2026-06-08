@@ -1,8 +1,12 @@
 import { NotFoundError, ValidationError } from '../infra/errors.js';
 import userRepository from '../repositories/user.repository.js';
+import type {
+  UserLoginType,
+  UserRegistratioType,
+} from '../schemas/user.schema.js';
 import authenticationModel from './authentication.model.js';
 
-async function create(user: { email: string; password: string }) {
+async function create(user: UserRegistratioType) {
   const userFound = await userRepository.findOne(user.email);
 
   if (userFound) {
@@ -13,6 +17,7 @@ async function create(user: { email: string; password: string }) {
   }
 
   const newUser = await userRepository.create({
+    name: user.name,
     email: user.email,
     password: user.password,
   });
@@ -20,7 +25,7 @@ async function create(user: { email: string; password: string }) {
   return newUser;
 }
 
-async function login(email: string, password: string) {
+async function login({ email, password }: UserLoginType) {
   const userFound = await userRepository.findOne(email);
 
   if (!userFound) {
@@ -32,9 +37,12 @@ async function login(email: string, password: string) {
 
   await authenticationModel.validadePasword(password, userFound.password);
 
-  const token = await authenticationModel.createToken({ uuid: userFound.uuid });
+  const token = await authenticationModel.createToken({
+    id: userFound.id,
+    role: userFound.role,
+  });
 
-  return { uuid: userFound.uuid, email: userFound.email, token };
+  return { id: userFound.id, email: userFound.email, token };
 }
 
 const user = {

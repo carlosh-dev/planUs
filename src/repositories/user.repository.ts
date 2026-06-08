@@ -1,5 +1,6 @@
 import { prisma } from '../infra/database/prisma.js';
 import passwordModel from '../models/password.model.js';
+import type { UserRegistratioType } from '../schemas/user.schema.js';
 
 async function findOne(email: string) {
   const userFound = await prisma.user.findUnique({
@@ -10,11 +11,12 @@ async function findOne(email: string) {
   return userFound;
 }
 
-async function create(user: { email: string; password: string }) {
-  const hashed_password = await passwordModel.hashPassword(user.password);
+async function create({ name, email, password }: UserRegistratioType) {
+  const hashed_password = await passwordModel.hashPassword(password);
   const newUser = await prisma.user.create({
     data: {
-      email: user.email,
+      name: name,
+      email: email,
       password: hashed_password,
     },
     omit: {

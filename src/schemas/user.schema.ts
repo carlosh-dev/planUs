@@ -1,4 +1,4 @@
-import z from 'zod';
+import { z } from 'zod';
 
 export const userRegistrationSchema = z.object({
   name: z
@@ -16,3 +16,6 @@ export const userLoginSchema = z.object({
     .string({ error: 'A senha deve conter no mínimo 8 caracteres.' })
     .min(8, 'A senha deve conter no mínimo 8 caracteres.'),
 });
+
+export type UserRegistratioType = z.infer<typeof userRegistrationSchema>;
+export type UserLoginType = z.infer<typeof userLoginSchema>;
