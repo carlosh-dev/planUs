@@ -13,11 +13,9 @@ export function middlewareValidateJWT(
   }
 
   jwt.verify(token, process.env.JWT_SECRET as string, (error, userInfo) => {
-    if (error) res.status(403).json({ message: 'Forbidden' }).end();
+    if (error) return res.status(403).json({ message: 'Forbidden' });
 
     req.userInfo = userInfo as { name: string; email: string };
     next();
   });
-
-  next();
 }
