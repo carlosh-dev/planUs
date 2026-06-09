@@ -1,31 +1,15 @@
-import orchestrator from '../../../orchestrator.js';
+import { prisma } from '../../../../infra/database/prisma.js';
 
 describe('POST /login', () => {
-  beforeAll(async () => {
-    await orchestrator.clearDatabase();
-
-    await fetch(`${process.env.BASE_URL}/api/register`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        name: 'Test User',
-        email: 'testuser@example.com',
-        password: 'testpassword123',
-      }),
-    });
-  });
-
-  it('deve retornar um token JWT', async () => {
+  it('should return a JWT token', async () => {
     const response = await fetch(`${process.env.BASE_URL}/api/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        email: 'testuser@example.com',
-        password: 'testpassword123',
+        email: 'user@email.com',
+        password: 'password123',
       }),
     });
 
@@ -39,7 +23,7 @@ describe('POST /login', () => {
 });
 
 describe('POST /register', () => {
-  it('deve criar um novo usuário e retornar um token JWT', async () => {
+  it('should create a new user and return a JWT token', async () => {
     const response = await fetch(`${process.env.BASE_URL}/api/register`, {
       method: 'POST',
       headers: {
@@ -47,7 +31,7 @@ describe('POST /register', () => {
       },
       body: JSON.stringify({
         name: 'User',
-        email: 'usercreated@example.com',
+        email: 'userregistered@example.com',
         password: 'newpassword123',
       }),
     });
@@ -55,5 +39,13 @@ describe('POST /register', () => {
     const body = await response.json();
     expect(response.status).toBe(201);
     expect(body).toHaveProperty('id');
+  });
+});
+
+afterAll(async () => {
+  await prisma.user.delete({
+    where: {
+      email: 'userregistered@example.com',
+    },
   });
 });
