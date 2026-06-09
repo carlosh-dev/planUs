@@ -13,6 +13,9 @@ export default {
     '^.+\\.ts$': ['ts-jest', { useESM: true }],
   },
 
+  // Carrega o .env.test antes de qualquer módulo de teste
+  setupFiles: ['<rootDir>/src/tests/setup.ts'],
+
   // Ignora os artefatos gerados pelo Prisma
   testPathIgnorePatterns: ['/node_modules/', '/dist/', '/generated/'],
 };
