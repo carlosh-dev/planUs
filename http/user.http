@@ -20,6 +20,7 @@ Content-Type: application/json
 }
 
 ### Login Admin
+# @name loginAdmin
 
 POST http://localhost:3333/api/login
 Content-Type: application/json
@@ -27,4 +28,17 @@ Content-Type: application/json
 {
   "email": "admin@email.com",
   "password": "admin123"
+}
+
+### Create Family
+@authToken = {{loginAdmin.response.body.token}}
+@uuids = {{loginAdmin.response.body.id}}
+
+POST http://localhost:3333/api/family
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "name": "Familia Silva",
+  "users": ["{{uuids}}"]
 }
