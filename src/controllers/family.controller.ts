@@ -16,7 +16,7 @@ async function create(
 
   console.log(newFamily);
 
-  return res.status(201).json({ id: newFamily.id });
+  return res.status(201).json({ id: newFamily.id, name: newFamily.name });
 }
 
 const familyController = {
