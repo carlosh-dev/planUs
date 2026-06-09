@@ -12,4 +12,6 @@ familyRoute.post(
   familyController.create,
 );
 
+familyRoute.get('/:user_id', familyController.list);
+
 export default familyRoute;
