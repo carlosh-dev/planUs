@@ -29,7 +29,7 @@ async function login({ email, password }: UserLoginType) {
     throw new NotFoundError('Usuário não encontrado.');
   }
 
-  await authenticationModel.validadePasword(password, userFound.password);
+  await authenticationModel.validatePassword(password, userFound.password);
 
   const token = await authenticationModel.createToken({
     id: userFound.id,

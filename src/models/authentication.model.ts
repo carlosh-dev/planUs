@@ -14,7 +14,7 @@ async function createToken(user: { id: string; role: Role }) {
   return token;
 }
 
-async function validadePasword(
+async function validatePassword(
   providedPassword: string,
   storedPassword: string,
 ) {
@@ -30,7 +30,7 @@ async function validadePasword(
 
 const authenticationModel = {
   createToken,
-  validadePasword,
+  validatePassword,
   EXPIRATION_IN_MILLISECONDS,
 };
 
