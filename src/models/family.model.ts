@@ -10,8 +10,15 @@ async function create({ name, users }: createFamilyType) {
   return newFamily;
 }
 
+async function list(userId: string) {
+  const families = await familyRepository.list(userId);
+
+  return families;
+}
+
 const familyModel = {
   create,
+  list,
 };
 
 export default familyModel;

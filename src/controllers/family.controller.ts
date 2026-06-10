@@ -1,7 +1,6 @@
 import type { Request, Response } from 'express';
 
 import familyModel from '../models/family.model.js';
-import familyRepository from '../repositories/family.repository.js';
 import type { createFamilyType } from '../schemas/family.schema.js';
 
 async function create(
@@ -24,7 +23,7 @@ async function list(
 ) {
   const userId = req.params.user_id;
 
-  const families = await familyRepository.list(userId);
+  const families = await familyModel.list(userId);
 
   return res.status(200).json({ results: families });
 }
