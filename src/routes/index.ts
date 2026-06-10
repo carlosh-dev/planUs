@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
 import {
-  asyncErrorHandler,
+  asyncRouteErrorHandler,
   errorsMiddleware,
 } from '../middlewares/errors.middleware.js';
 import privateRoutes from './private/index.js';
@@ -11,8 +11,8 @@ const routes = Router();
 
 routes.use(
   '/api',
-  asyncErrorHandler(publicRoutes),
-  asyncErrorHandler(privateRoutes),
+  asyncRouteErrorHandler(publicRoutes),
+  asyncRouteErrorHandler(privateRoutes),
 );
 
 routes.use(errorsMiddleware);
