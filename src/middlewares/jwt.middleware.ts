@@ -11,11 +11,11 @@ export function middlewareValidateJWT(
   const token = req.headers.authorization?.replace('Bearer ', '');
 
   if (!token) {
-    return res.status(401).json({ message: 'Unauthorized' });
+    throw new UnauthorizedError('Não autorizado.');
   }
 
   jwt.verify(token, process.env.JWT_SECRET as string, (error, userInfo) => {
-    if (error) throw new UnauthorizedError('Token inválido');
+    if (error) throw new UnauthorizedError('Token inválido.');
 
     req.userInfo = userInfo as { name: string; email: string };
     next();

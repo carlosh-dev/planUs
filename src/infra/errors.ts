@@ -6,11 +6,10 @@ export class BaseError extends Error {
   constructor(
     message: string,
     public cause: unknown,
-    defaultMessage: string,
     defaultName: string,
     defaultStatus: number,
   ) {
-    super(message || defaultMessage, { cause });
+    super(message, { cause });
     this.name = defaultName;
     this.statusCode = defaultStatus;
   }
@@ -26,72 +25,36 @@ export class BaseError extends Error {
 
 export class InternalServerError extends BaseError {
   constructor(message = 'Erro interno do servidor.', cause?: unknown) {
-    super(
-      message,
-      cause,
-      'Recurso não encontrado',
-      'InternalServerError',
-      StatusCodes.INTERNAL_SERVER_ERROR,
-    );
+    super(message, cause, 'InternalServerError', StatusCodes.INTERNAL_SERVER_ERROR);
   }
 }
 
 export class ServiceError extends BaseError {
   constructor(message = 'Serviço fora do ar.', cause?: unknown) {
-    super(
-      message,
-      cause,
-      'Serviço fora do ar.',
-      'ServiceError',
-      StatusCodes.SERVICE_UNAVAILABLE,
-    );
+    super(message, cause, 'ServiceError', StatusCodes.SERVICE_UNAVAILABLE);
   }
 }
 
 export class NotFoundError extends BaseError {
   constructor(message = 'Recurso não encontrado.', cause?: unknown) {
-    super(
-      message,
-      cause,
-      'Recurso não encontrado.',
-      'NotFoundError',
-      StatusCodes.NOT_FOUND,
-    );
+    super(message, cause, 'NotFoundError', StatusCodes.NOT_FOUND);
   }
 }
 
 export class MethodNotAllowedError extends BaseError {
   constructor(message = 'Método não permitido.', cause?: unknown) {
-    super(
-      message,
-      cause,
-      'Método não permitido.',
-      'MethodNotAllowedError',
-      StatusCodes.METHOD_NOT_ALLOWED,
-    );
+    super(message, cause, 'MethodNotAllowedError', StatusCodes.METHOD_NOT_ALLOWED);
   }
 }
 
 export class ValidationError extends BaseError {
   constructor(message = 'Erro de validação.', cause?: unknown) {
-    super(
-      message,
-      cause,
-      'Erro de validação.',
-      'ValidationError',
-      StatusCodes.BAD_REQUEST,
-    );
+    super(message, cause, 'ValidationError', StatusCodes.BAD_REQUEST);
   }
 }
 
 export class UnauthorizedError extends BaseError {
   constructor(message = 'Não autorizado.', cause?: unknown) {
-    super(
-      message,
-      cause,
-      'Não autorizado.',
-      'UnauthorizedError',
-      StatusCodes.UNAUTHORIZED,
-    );
+    super(message, cause, 'UnauthorizedError', StatusCodes.UNAUTHORIZED);
   }
 }

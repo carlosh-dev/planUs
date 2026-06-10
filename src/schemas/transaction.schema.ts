@@ -22,4 +22,4 @@ export const createTransactionSchema = z.object({
   type: z.enum(TransactionType),
 });
 
-export type createTransactionType = z.infer<typeof createTransactionSchema>;
+export type CreateTransactionType = z.infer<typeof createTransactionSchema>;
