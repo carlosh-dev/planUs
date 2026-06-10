@@ -74,8 +74,6 @@ describe('', () => {
     expect(body).toEqual({
       name: 'NotFoundError',
       message: 'Nenhuma familia encontrada.',
-      action: 'Cadastre uma família para este usuário.',
-      details: [],
       statusCode: 404,
     });
   });

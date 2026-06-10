@@ -14,6 +14,7 @@ describe('POST /login', () => {
     });
 
     const body = await response.json();
+    console.log();
 
     expect(response.status).toBe(200);
     expect(body).toHaveProperty('id');
