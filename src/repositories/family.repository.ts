@@ -27,10 +27,7 @@ async function list(userId: string) {
   });
 
   if (!results || results.length == 0) {
-    throw new NotFoundError({
-      message: 'Nenhuma familia encontrada.',
-      action: 'Cadastre uma família para este usuário.',
-    });
+    throw new NotFoundError('Nenhuma familia encontrada.');
   }
 
   return results;

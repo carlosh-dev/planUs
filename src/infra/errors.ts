@@ -1,169 +1,97 @@
 import { StatusCodes } from 'http-status-codes';
 
-export type BaseErrorType = {
-  message?: string;
-  details?: { message: string }[];
-  cause?: unknown;
-  action?: string;
-  statusCode?: number;
-};
-
-export class InternalServerError extends Error {
-  public readonly action: string;
-  public readonly statusCode: number;
-  public readonly details?: { message: string }[];
+export class BaseError extends Error {
+  public statusCode: number;
 
   constructor(
     message: string,
-    { cause, action, statusCode, details }: BaseErrorType = {},
+    public cause: unknown,
+    defaultMessage: string,
+    defaultName: string,
+    defaultStatus: number,
   ) {
-    super(message, { cause });
-    this.name = new.target.name || 'InternalServerError';
-    this.action = action ?? 'Entre em contato com o suporte.';
-    this.statusCode = statusCode ?? StatusCodes.INTERNAL_SERVER_ERROR;
-    this.details = details ?? [];
+    super(message || defaultMessage, { cause });
+    this.name = defaultName;
+    this.statusCode = defaultStatus;
   }
 
   toJSON() {
     return {
       name: this.name,
       message: this.message,
-      action: this.action,
       statusCode: this.statusCode,
-      details: this.details,
     };
   }
 }
 
-export class ServiceError extends Error {
-  public readonly action: string;
-  public readonly statusCode: number;
-  public readonly details?: { message: string }[];
-
-  constructor({ cause, message, details }: BaseErrorType = {}) {
-    super(message || 'Serviço indisponivel no momento.', {
+export class InternalServerError extends BaseError {
+  constructor(message = 'Erro interno do servidor.', cause?: unknown) {
+    super(
+      message,
       cause,
-    });
-    this.name = 'ServiceError';
-    this.action = 'Verifique se o serviço está disponível.';
-    this.statusCode = StatusCodes.SERVICE_UNAVAILABLE;
-    this.details = details ?? [];
-  }
-
-  toJSON() {
-    return {
-      name: this.name,
-      message: this.message,
-      action: this.action,
-      statusCode: this.statusCode,
-      details: this.details,
-    };
+      'Recurso não encontrado',
+      'InternalServerError',
+      StatusCodes.INTERNAL_SERVER_ERROR,
+    );
   }
 }
 
-export class MethodNotAllowedError extends Error {
-  public readonly action: string;
-  public readonly statusCode: number;
-  public readonly details?: { message: string }[];
-
-  constructor({ cause, message, details }: BaseErrorType = {}) {
-    super(message || 'Método não permitido para este endpoint.', {
+export class ServiceError extends BaseError {
+  constructor(message = 'Sevriço fora do ar.', cause?: unknown) {
+    super(
+      message,
       cause,
-    });
-    this.name = 'MethodNotAllowedError';
-    this.action =
-      'Verifique se o método HTTP enviado é válido para este endpoint.';
-    this.statusCode = StatusCodes.METHOD_NOT_ALLOWED;
-    this.details = details ?? [];
-  }
-
-  toJSON() {
-    return {
-      name: this.name,
-      message: this.message,
-      action: this.action,
-      statusCode: this.statusCode,
-      details: this.details,
-    };
+      'Sevriço fora do ar.',
+      'ServiceError',
+      StatusCodes.SERVICE_UNAVAILABLE,
+    );
   }
 }
 
-export class ValidationError extends Error {
-  public readonly action: string;
-  public readonly statusCode: number;
-  public readonly details?: { message: string }[];
-
-  constructor({ cause, message, action, details }: BaseErrorType = {}) {
-    super(message || 'Um erro de validação ocorreu.', {
+export class NotFoundError extends BaseError {
+  constructor(message = 'Recurso não encontrado.', cause?: unknown) {
+    super(
+      message,
       cause,
-    });
-    this.name = 'ValidationError';
-    this.action = action || 'Ajuste os dados eviados e tente novamente.';
-    this.statusCode = StatusCodes.BAD_REQUEST;
-    this.details = details ?? [];
-  }
-
-  toJSON() {
-    return {
-      name: this.name,
-      message: this.message,
-      action: this.action,
-      statusCode: this.statusCode,
-      details: this.details,
-    };
+      'Recurso não encontrado.',
+      'NotFoundError',
+      StatusCodes.NOT_FOUND,
+    );
   }
 }
 
-export class NotFoundError extends Error {
-  public readonly action: string;
-  public readonly statusCode: number;
-  public readonly details?: { message: string }[];
-
-  constructor({ cause, message, action, details }: BaseErrorType = {}) {
-    super(message || 'Recurso não encontrado.', {
+export class MethodNotAllowedError extends BaseError {
+  constructor(message = 'Método não permitido.', cause?: unknown) {
+    super(
+      message,
       cause,
-    });
-    this.name = 'NotFoundError';
-    this.action =
-      action ||
-      'Verifique se os paremetros enviados na consulta estão corretos.';
-    this.statusCode = StatusCodes.NOT_FOUND;
-    this.details = details ?? [];
-  }
-
-  toJSON() {
-    return {
-      name: this.name,
-      message: this.message,
-      action: this.action,
-      statusCode: this.statusCode,
-      details: this.details,
-    };
+      'Método não permitido.',
+      'MethodNotAllowedError',
+      StatusCodes.METHOD_NOT_ALLOWED,
+    );
   }
 }
 
-export class UnauthorazedError extends Error {
-  public readonly action: string;
-  public readonly statusCode: number;
-  public readonly details?: { message: string }[];
-
-  constructor({ cause, message, action, details }: BaseErrorType = {}) {
-    super(message || 'Usuário não autenticado.', {
+export class ValidationError extends BaseError {
+  constructor(message = 'Erro de validação.', cause?: unknown) {
+    super(
+      message,
       cause,
-    });
-    this.name = 'UnauthorazedError';
-    this.action = action || 'Faça o login novamente para continuar.';
-    this.statusCode = StatusCodes.UNAUTHORIZED;
-    this.details = details ?? [];
+      'Erro de validação.',
+      'ValidationError',
+      StatusCodes.BAD_REQUEST,
+    );
   }
+}
 
-  toJSON() {
-    return {
-      name: this.name,
-      message: this.message,
-      action: this.action,
-      statusCode: this.statusCode,
-      details: this.details,
-    };
+export class UnauthorazedError extends BaseError {
+  constructor(message = 'Não autorizado.', cause?: unknown) {
+    super(
+      message,
+      cause,
+      'Não autorizado.',
+      'UnauthorazedError',
+      StatusCodes.UNAUTHORIZED,
+    );
   }
 }

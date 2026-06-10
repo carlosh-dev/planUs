@@ -24,10 +24,7 @@ async function validadePasword(
   );
 
   if (!correctPasswordMatch) {
-    throw new UnauthorazedError({
-      message: 'Senha não confere.',
-      action: 'Verifique se esse dado está correto.',
-    });
+    throw new UnauthorazedError('Senha incorreta.');
   }
 }
 

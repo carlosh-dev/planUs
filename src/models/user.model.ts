@@ -10,10 +10,7 @@ async function create(user: UserRegistratioType) {
   const userFound = await userRepository.findOne(user.email);
 
   if (userFound) {
-    throw new ValidationError({
-      message: 'User already exists',
-      action: 'Use another email or try to login.',
-    });
+    throw new ValidationError('Usuário já possui email cadastrado.');
   }
 
   const newUser = await userRepository.create({
@@ -29,10 +26,7 @@ async function login({ email, password }: UserLoginType) {
   const userFound = await userRepository.findOne(email);
 
   if (!userFound) {
-    throw new NotFoundError({
-      message: 'User not found',
-      action: 'Check your credentials and try again.',
-    });
+    throw new NotFoundError('Usuário não encontrado.');
   }
 
   await authenticationModel.validadePasword(password, userFound.password);
