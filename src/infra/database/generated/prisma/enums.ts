@@ -18,12 +18,12 @@ export const PaymentType = {
 export type PaymentType = (typeof PaymentType)[keyof typeof PaymentType]
 
 
-export const TransationType = {
+export const TransactionType = {
   IN: 'IN',
   OUT: 'OUT'
 } as const
 
-export type TransationType = (typeof TransationType)[keyof typeof TransationType]
+export type TransactionType = (typeof TransactionType)[keyof typeof TransactionType]
 
 
 export const Role = {

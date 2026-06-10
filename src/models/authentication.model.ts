@@ -9,7 +9,9 @@ const EXPIRATION_IN_MILLISECONDS = 60 * 60 * 24 * 30 * 1_000; // 30 days
 async function createToken(user: { id: string; role: Role }) {
   const secret = process.env.JWT_SECRET || 'secret';
 
-  const token = jwt.sign({ user_id: user.id, role: user.role }, secret, {});
+  const token = jwt.sign({ user_id: user.id, role: user.role }, secret, {
+    expiresIn: EXPIRATION_IN_MILLISECONDS,
+  });
 
   return token;
 }

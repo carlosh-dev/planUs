@@ -18,7 +18,7 @@ enum PaymentType {
   PIX
 }
 
-enum TransationType {
+enum TransactionType {
   IN
   OUT
 }
@@ -58,12 +58,12 @@ model Transaction {
   description     String?          @unique @db.VarChar(250)
   value           Int
   userId          String
-  user            User             @relation(fields: [userId], references: [id])
+  user            User             @relation(fields: [userId], references: [id], onDelete: Cascade)
   recurrent       Boolean          @default(false)
   payment_date    DateTime
   payment_type    PaymentType      @default(DEBIT)
   installments    Int?
-  type            TransationType
+  type            TransactionType
   createdAt       DateTime         @default(now())
   updatedAt       DateTime         @default(now())
   transactionTags TransactionTag[]
@@ -72,7 +72,7 @@ model Transaction {
 model PlannedTransaction {
   id                     String                  @id @default(uuid())
   name                   String                  @db.VarChar(50)
-  description            String?                 @unique @db.VarChar(250)
+  description            String?                 @db.VarChar(250)
   value                  Int
   userId                 String
   user                   User                    @relation(fields: [userId], references: [id])
@@ -81,7 +81,7 @@ model PlannedTransaction {
   end_payment_date       DateTime
   payment_type           PaymentType             @default(DEBIT)
   installments           Int?
-  type                   TransationType
+  type                   TransactionType
   createdAt              DateTime                @default(now())
   updatedAt              DateTime                @default(now())
   plannedTransactionTags PlannedTransactionTag[]
@@ -101,7 +101,7 @@ model Tag {
 
 model TransactionTag {
   transactionId String
-  transaction   Transaction @relation(fields: [transactionId], references: [id])
+  transaction   Transaction @relation(fields: [transactionId], references: [id], onDelete: Cascade)
   tagId         String
   tag           Tag         @relation(fields: [tagId], references: [id])
 
@@ -110,7 +110,7 @@ model TransactionTag {
 
 model PlannedTransactionTag {
   plannedTransactionId String
-  plannedTransaction   PlannedTransaction @relation(fields: [plannedTransactionId], references: [id])
+  plannedTransaction   PlannedTransaction @relation(fields: [plannedTransactionId], references: [id], onDelete: Cascade)
   tagId                String
   tag                  Tag                @relation(fields: [tagId], references: [id])
 

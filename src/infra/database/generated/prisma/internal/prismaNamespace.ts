@@ -1163,16 +1163,16 @@ export type ListEnumPaymentTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$
 
 
 /**
- * Reference to a field of type 'TransationType'
+ * Reference to a field of type 'TransactionType'
  */
-export type EnumTransationTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TransationType'>
+export type EnumTransactionTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TransactionType'>
     
 
 
 /**
- * Reference to a field of type 'TransationType[]'
+ * Reference to a field of type 'TransactionType[]'
  */
-export type ListEnumTransationTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TransationType[]'>
+export type ListEnumTransactionTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TransactionType[]'>
     
 
 
