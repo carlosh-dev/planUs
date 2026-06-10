@@ -37,11 +37,11 @@ export class InternalServerError extends BaseError {
 }
 
 export class ServiceError extends BaseError {
-  constructor(message = 'Sevriço fora do ar.', cause?: unknown) {
+  constructor(message = 'Serviço fora do ar.', cause?: unknown) {
     super(
       message,
       cause,
-      'Sevriço fora do ar.',
+      'Serviço fora do ar.',
       'ServiceError',
       StatusCodes.SERVICE_UNAVAILABLE,
     );
@@ -84,13 +84,13 @@ export class ValidationError extends BaseError {
   }
 }
 
-export class UnauthorazedError extends BaseError {
+export class UnauthorizedError extends BaseError {
   constructor(message = 'Não autorizado.', cause?: unknown) {
     super(
       message,
       cause,
       'Não autorizado.',
-      'UnauthorazedError',
+      'UnauthorizedError',
       StatusCodes.UNAUTHORIZED,
     );
   }

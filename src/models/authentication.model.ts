@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 
 import type { Role } from '../infra/database/generated/prisma/enums.js';
-import { UnauthorazedError } from '../infra/errors.js';
+import { UnauthorizedError } from '../infra/errors.js';
 import passwordModel from './password.model.js';
 
 const EXPIRATION_IN_MILLISECONDS = 60 * 60 * 24 * 30 * 1_000; // 30 days
@@ -26,7 +26,7 @@ async function validatePassword(
   );
 
   if (!correctPasswordMatch) {
-    throw new UnauthorazedError('Senha incorreta.');
+    throw new UnauthorizedError('Senha incorreta.');
   }
 }
 

@@ -17,5 +17,5 @@ export const userLoginSchema = z.object({
     .min(8, 'A senha deve conter no mínimo 8 caracteres.'),
 });
 
-export type UserRegistratioType = z.infer<typeof userRegistrationSchema>;
+export type UserRegistrationType = z.infer<typeof userRegistrationSchema>;
 export type UserLoginType = z.infer<typeof userLoginSchema>;

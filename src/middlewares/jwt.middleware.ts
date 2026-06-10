@@ -1,7 +1,7 @@
 import type { NextFunction, Response, Request } from 'express';
 import jwt from 'jsonwebtoken';
 
-import { UnauthorazedError } from '../infra/errors.js';
+import { UnauthorizedError } from '../infra/errors.js';
 
 export function middlewareValidateJWT(
   req: Request & { userInfo?: { name: string; email: string } },
@@ -15,7 +15,7 @@ export function middlewareValidateJWT(
   }
 
   jwt.verify(token, process.env.JWT_SECRET as string, (error, userInfo) => {
-    if (error) throw new UnauthorazedError('Token invláido');
+    if (error) throw new UnauthorizedError('Token inválido');
 
     req.userInfo = userInfo as { name: string; email: string };
     next();

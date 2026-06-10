@@ -2,7 +2,7 @@ import z from 'zod';
 
 import {
   PaymentType,
-  TransationType,
+  TransactionType,
 } from '../infra/database/generated/prisma/enums.js';
 
 export const createTransactionSchema = z.object({
@@ -14,12 +14,12 @@ export const createTransactionSchema = z.object({
   paymentDate: z.date({
     error: (issue) =>
       issue.input === undefined
-        ? 'Data de pagemnto é obrigatório.'
+        ? 'Data de pagamento é obrigatório.'
         : 'Data inválida',
   }),
   paymentType: z.enum(PaymentType),
   installments: z.number().optional(),
-  type: z.enum(TransationType),
+  type: z.enum(TransactionType),
 });
 
 export type createTransactionType = z.infer<typeof createTransactionSchema>;

@@ -2,11 +2,11 @@ import { NotFoundError, ValidationError } from '../infra/errors.js';
 import userRepository from '../repositories/user.repository.js';
 import type {
   UserLoginType,
-  UserRegistratioType,
+  UserRegistrationType,
 } from '../schemas/user.schema.js';
 import authenticationModel from './authentication.model.js';
 
-async function create(user: UserRegistratioType) {
+async function create(user: UserRegistrationType) {
   const userFound = await userRepository.findOne(user.email);
 
   if (userFound) {

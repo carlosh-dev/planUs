@@ -4,11 +4,11 @@ import controller from '../infra/controller.js';
 import user from '../models/user.model.js';
 import type {
   UserLoginType,
-  UserRegistratioType,
+  UserRegistrationType,
 } from '../schemas/user.schema.js';
 
 export async function register(
-  req: Request<unknown, unknown, UserRegistratioType>,
+  req: Request<unknown, unknown, UserRegistrationType>,
   res: Response,
 ) {
   const { name, email, password } = req.body;
